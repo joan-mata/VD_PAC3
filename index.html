@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Quién es el huésped perfecto? · PAC3 Visualización de Datos</title>
+  <meta name="description" content="Storytelling de datos: análisis de 119.390 reservas de hoteles de Portugal 2015–2017. PAC3 Visualización de Datos — UOC." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ─── BARRA DE PROGRESO ─── -->
+  <div id="progress-bar" role="progressbar" aria-label="Progreso de lectura"></div>
+
+  <!-- ─── NAVEGACIÓN LATERAL ─── -->
+  <nav id="side-nav" aria-label="Navegación por secciones"></nav>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────
+       PORTADA
+  ─────────────────────────────────────────────────────────────────────────────── -->
+  <section id="cover" class="section section--cover" aria-label="Portada">
+
+    <p class="cover-eyebrow cover-eyebrow--author reveal">JOAN MATA PARRAGA</p>
+    <p class="cover-eyebrow reveal">PAC3 · Visualización de Datos · UOC</p>
+
+    <h1 class="cover-title reveal reveal-delay-1">
+      ¿Quién es el<br /><em>huésped perfecto?</em>
+    </h1>
+
+    <p class="cover-subtitle reveal reveal-delay-2">
+      Los hoteles persiguen volumen. Los datos señalan a otro tipo de cliente.
+    </p>
+
+    <div class="cover-stats reveal reveal-delay-3">
+      <div class="cover-stat">
+        <span class="cover-stat__num">119.390</span>
+        <span class="cover-stat__label">Reservas analizadas</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat__num">2</span>
+        <span class="cover-stat__label">Hoteles en Portugal</span>
+      </div>
+      <div class="cover-stat">
+        <span class="cover-stat__num">2015–2017</span>
+        <span class="cover-stat__label">Período de datos</span>
+      </div>
+    </div>
+
+    <!-- CAMBIO 3 — Tooltip "Por qué esta herramienta" -->
+    <div class="tooltip-btn-wrap reveal reveal-delay-4" style="margin-top:28px">
+      <button class="tooltip-btn" type="button">
+        <em class="tooltip-btn__icon">ℹ</em>
+        <span>Por qué esta herramienta</span></button>
+      <div class="tooltip-content" role="tooltip">
+        Esta visualización está construida en HTML/CSS/JS vanilla, sin
+        frameworks ni librerías de gráficos externas. La elección fue
+        deliberada: las herramientas como Flourish o Tableau limitan
+        el control sobre la narrativa y la interactividad. Con HTML puro
+        se controla exactamente cuándo aparece cada elemento, cómo anima
+        y qué mensaje refuerza. El scrollytelling narrativo requiere esa
+        precisión.
+      </div>
+    </div>
+
+    <div class="cover-scroll-hint" aria-hidden="true">
+      <span>Desplázate para explorar</span>
+      <div class="scroll-arrow"></div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────
+       EXPLORACIÓN — Antes de la historia, los datos
+       CAMBIO 2 — Nueva sección exploratoria
+  ─────────────────────────────────────────────────────────────────────────────── -->
+  <section id="explore" class="section section--explore" aria-label="Análisis exploratorio del dataset">
+
+    <div class="act-header">
+      <p class="act-number reveal">ANÁLISIS EXPLORATORIO</p>
+      <h2 class="act-title reveal reveal-delay-1">Antes de la historia, los datos</h2>
+      <div class="section-divider reveal reveal-delay-2"></div>
+      <p class="act-message reveal reveal-delay-3">
+        119.390 reservas. ¿Por dónde empezar? Así exploramos el dataset.
+      </p>
+    </div>
+
+    <div class="act-content">
+      <div class="explore-grid">
+
+        <!-- Tarjeta 1: Tasa de cancelación -->
+        <div class="explore-card reveal reveal-delay-1">
+          <p class="explore-card__label">Tasa de cancelación global</p>
+          <div class="explore-card__num">
+            <span class="counter" data-target="37.0" data-decimals="1" data-suffix="%">0%</span>
+          </div>
+          <p class="explore-card__text">
+            El problema más visible del dataset — pero no el más interesante
+          </p>
+        </div>
+
+        <!-- Tarjeta 2: Distribución por tipo de viajero -->
+        <div class="explore-card reveal reveal-delay-2">
+          <p class="explore-card__label">Distribución por tipo de viajero</p>
+          <div class="explore-mini-stats">
+            <div class="explore-mini-stat">
+              <span class="explore-mini-stat__label">Parejas</span>
+              <span class="explore-mini-stat__val">
+                <span class="counter" data-target="49136" data-format="thousands" data-suffix="">0</span>
+              </span>
+            </div>
+            <div class="explore-mini-stat">
+              <span class="explore-mini-stat__label">Solo</span>
+              <span class="explore-mini-stat__val">
+                <span class="counter" data-target="16022" data-format="thousands" data-suffix="">0</span>
+              </span>
+            </div>
+            <div class="explore-mini-stat">
+              <span class="explore-mini-stat__label">Familias</span>
+              <span class="explore-mini-stat__val">
+                <span class="counter" data-target="6073" data-format="thousands" data-suffix="">0</span>
+              </span>
+            </div>
+          </div>
+          <p class="explore-card__text">
+            Las familias son minoría. ¿Pero son menos rentables?
+          </p>
+        </div>
+
+        <!-- Tarjeta 3: Canal más usado -->
+        <div class="explore-card reveal reveal-delay-3">
+          <p class="explore-card__label">Canal más usado (OTA)</p>
+          <div class="explore-card__num">
+            <span class="counter" data-target="47.3" data-decimals="1" data-suffix="%">0%</span>
+          </div>
+          <p class="explore-card__text">
+            Booking domina el volumen. ¿También domina el valor?
+          </p>
+        </div>
+
+        <!-- Tarjeta 4: Clientes que repiten -->
+        <div class="explore-card reveal reveal-delay-4">
+          <p class="explore-card__label">Clientes que repiten</p>
+          <div class="explore-card__num">
+            <span class="counter" data-target="3.2" data-decimals="1" data-suffix="%">0%</span>
+          </div>
+          <p class="explore-card__text">
+            Una minoría casi invisible. ¿Pero cuánto valen?
+          </p>
+        </div>
+
+      </div><!-- /explore-grid -->
+
+      <!-- Texto de transición -->
+      <div class="explore-transition reveal">
+        <p class="explore-transition__text">
+          "Estas preguntas llevaron a una historia sobre un tipo de cliente
+          que los hoteles subestiman. Descúbrela."
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────
+       ACTO 1 — Las familias generan casi 3× más
+  ─────────────────────────────────────────────────────────────────────────────── -->
+  <section id="act1" class="section section--act" aria-label="Acto 1: Ingresos por tipo de huésped">
+    <div class="act-header">
+      <p class="act-number reveal">ACTO 1 DE 4</p>
+      <h2 class="act-title reveal reveal-delay-1">
+        Las familias generan casi<br />3&nbsp;veces más que un viajero solo
+      </h2>
+      <div class="section-divider reveal reveal-delay-2"></div>
+      <p class="act-message reveal reveal-delay-3">
+        No es solo que paguen más por noche — es que ocupan la misma habitación
+        y se quedan las mismas noches que una pareja, pero el hotel cobra una
+        tarifa sensiblemente mayor.
+      </p>
+    </div>
+
+    <div class="act-content">
+      <!-- Gráfico de barras -->
+      <div class="chart-wrap reveal reveal-delay-1">
+        <p class="chart-title">Ingreso total estimado por estancia (€)</p>
+        <div id="act1-bars" class="bar-chart">
+          <!-- Generado por charts.js -->
+        </div>
+      </div>
+
+      <!-- Insight -->
+      <div class="insight-box reveal reveal-delay-2">
+        <p class="insight-box__label">Insight clave</p>
+        <p class="insight-box__text">
+          Una familia ocupa <strong>la misma habitación</strong> que una pareja,
+          se queda <strong>las mismas 3,7 noches</strong>, pero genera
+          <strong>561&nbsp;€</strong> frente a 361&nbsp;€.
+          El hotel cobra más por el mismo recurso, <strong>sin coste adicional</strong>.
+          La tarifa media diaria sube de 99&nbsp;€/noche a 151&nbsp;€/noche
+          sólo cambiando el tipo de cliente — no la habitación.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────
+       ACTO 2 — Booking genera más, pero cuesta ~2M€
+  ─────────────────────────────────────────────────────────────────────────────── -->
+  <section id="act2" class="section section--act" aria-label="Acto 2: Comparativa de canales de distribución">
+    <div class="act-header">
+      <p class="act-number reveal">ACTO 2 DE 4</p>
+      <h2 class="act-title reveal reveal-delay-1">
+        Booking genera más, pero le cuesta<br />al hotel ~2M€ en comisiones
+      </h2>
+      <div class="section-divider reveal reveal-delay-2"></div>
+      <p class="act-message reveal reveal-delay-3">
+        El ingreso por estancia confirmada es casi idéntico en ambos canales.
+        Booking aporta volumen, pero a un coste que los hoteles raramente calculan.
+      </p>
+    </div>
+
+    <div class="act-content">
+
+      <!-- CAMBIO 1 — Barras animadas de tasa de confirmación -->
+      <div class="chart-wrap reveal reveal-delay-1" style="margin-bottom:32px">
+        <p class="chart-title">Tasa de confirmación por canal</p>
+        <div class="bar-chart">
+          <div class="bar-row">
+            <div class="bar-label" style="line-height:1.35">
+              Online TA<br /><small style="font-size:.72em;color:var(--text-muted)">(Booking)</small>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" data-pct="63.3" style="background:var(--orange)"></div>
+            </div>
+            <div class="bar-value" style="color:var(--orange)">
+              <span class="counter" data-target="63.3" data-decimals="1" data-suffix="%">0%</span>
+            </div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Canal Directo</div>
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--highlight" data-pct="84.7" style="background:var(--green-mid)"></div>
+            </div>
+            <div class="bar-value" style="color:var(--green-mid)">
+              <span class="counter" data-target="84.7" data-decimals="1" data-suffix="%">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="channel-grid">
+
+        <!-- Online TA (Booking) -->
+        <div id="channel-ota" class="channel-card channel-card--ota reveal">
+          <div class="channel-card__header">
+            <span class="channel-card__icon">🌐</span>
+            <span class="channel-card__name">Online TA (Booking)</span>
+          </div>
+
+          <div class="confirm-bar-wrap">
+            <div class="confirm-bar-label">
+              <span>Tasa de confirmación</span>
+              <span style="color:var(--orange)">63,3%</span>
+            </div>
+            <div class="confirm-bar-track">
+              <div class="confirm-bar-fill" data-pct="63.3" style="background:var(--orange)"></div>
+            </div>
+          </div>
+
+          <div class="channel-metric">
+            <span class="channel-metric__label">Total reservas</span>
+            <span class="channel-metric__value"
+              data-counter="totalBookings"
+              data-suffix="">56.477</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Confirmadas</span>
+            <span class="channel-metric__value channel-metric__value--neutral">35.738</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Canceladas</span>
+            <span class="channel-metric__value channel-metric__value--negative">20.739</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Ingreso medio/estancia</span>
+            <span class="channel-metric__value channel-metric__value--hero">387&nbsp;€</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Ingreso total</span>
+            <span class="channel-metric__value channel-metric__value--positive">13,7M€</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Comisión estimada (15%)</span>
+            <span class="channel-metric__value channel-metric__value--negative">−2,06M€</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label" style="font-weight:600;color:var(--text-primary)">Neto real</span>
+            <span class="channel-metric__value channel-metric__value--hero" style="color:var(--orange)">~11,6M€</span>
+          </div>
+        </div>
+
+        <!-- Canal Directo -->
+        <div id="channel-direct" class="channel-card channel-card--direct reveal reveal-delay-2">
+          <div class="channel-card__header">
+            <span class="channel-card__icon">🏠</span>
+            <span class="channel-card__name">Canal Directo</span>
+          </div>
+
+          <div class="confirm-bar-wrap">
+            <div class="confirm-bar-label">
+              <span>Tasa de confirmación</span>
+              <span style="color:var(--green-mid)">84,7%</span>
+            </div>
+            <div class="confirm-bar-track">
+              <div class="confirm-bar-fill" data-pct="84.7" style="background:var(--green-mid)"></div>
+            </div>
+          </div>
+
+          <div class="channel-metric">
+            <span class="channel-metric__label">Total reservas</span>
+            <span class="channel-metric__value">12.606</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Confirmadas</span>
+            <span class="channel-metric__value channel-metric__value--positive">10.672</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Canceladas</span>
+            <span class="channel-metric__value">1.934</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Ingreso medio/estancia</span>
+            <span class="channel-metric__value channel-metric__value--hero">391&nbsp;€</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Ingreso total</span>
+            <span class="channel-metric__value">4,1M€</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label">Comisión</span>
+            <span class="channel-metric__value channel-metric__value--positive">0&nbsp;€</span>
+          </div>
+          <div class="channel-metric">
+            <span class="channel-metric__label" style="font-weight:600;color:var(--text-primary)">Neto real</span>
+            <span class="channel-metric__value channel-metric__value--hero" style="color:var(--green-mid)">4,1M€</span>
+          </div>
+        </div>
+
+      </div><!-- /channel-grid -->
+
+      <div class="insight-box reveal">
+        <p class="insight-box__label">Insight clave</p>
+        <p class="insight-box__text">
+          Booking necesita <strong>4,5 veces más reservas</strong> para generar
+          3,3 veces más ingresos, y encima cobra una comisión del 15%.
+          <strong>El canal directo es más eficiente por reserva</strong>:
+          ingreso medio casi idéntico (391€ vs 387€), tasa de confirmación
+          21 puntos por encima, y sin coste de captación.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────
+       ACTO 3 — Un cliente fiel vale ~708€ de por vida
+  ─────────────────────────────────────────────────────────────────────────────── -->
+  <section id="act3" class="section section--act" aria-label="Acto 3: Valor del cliente fiel">
+    <div class="act-header">
+      <p class="act-number reveal">ACTO 3 DE 4</p>
+      <h2 class="act-title reveal reveal-delay-1">
+        Un cliente fiel vale ~708€ de por vida,<br />sin pagar comisión
+      </h2>
+      <div class="section-divider reveal reveal-delay-2"></div>
+      <p class="act-message reveal reveal-delay-3">
+        Pagan menos por visita, pero vuelven 4&nbsp;veces. Y el hotel no paga
+        nada por conseguirlos.
+      </p>
+    </div>
+
+    <div class="act-content">
+      <div class="client-grid">
+
+        <!-- Cliente fiel -->
+        <div id="client-loyal" class="client-card client-card--loyal reveal">
+          <span class="client-card__badge badge--green">Valor a largo plazo</span>
+          <h3 class="client-card__name">Cliente fiel</h3>
+          <div class="client-card__ltv client-card__ltv--green">
+            <span class="counter" data-target="708" data-suffix="€">0€</span>
+          </div>
+          <p class="client-card__ltv-label">valor de vida estimado (4 visitas × 177€)</p>
+
+          <div class="client-metrics">
+            <div class="client-metric">
+              <span class="client-metric__label">Tasa cancelación</span>
+              <span class="client-metric__value client-metric__value--good">14,5%</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Ingreso / estancia</span>
+              <span class="client-metric__value">177&nbsp;€</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Noches / visita</span>
+              <span class="client-metric__value">2,0</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Visitas previas (media)</span>
+              <span class="client-metric__value client-metric__value--good">4</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Coste captación</span>
+              <span class="client-metric__value client-metric__value--good">0&nbsp;€</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cliente nuevo OTA -->
+        <div id="client-new_ota" class="client-card reveal reveal-delay-2">
+          <span class="client-card__badge badge--orange">Mayor cancelación</span>
+          <h3 class="client-card__name">Cliente nuevo (OTA)</h3>
+          <div class="client-card__ltv client-card__ltv--orange">
+            <span class="counter" data-target="361" data-suffix="€">0€</span>
+          </div>
+          <p class="client-card__ltv-label">valor por visita única</p>
+
+          <div class="client-metrics">
+            <div class="client-metric">
+              <span class="client-metric__label">Tasa cancelación</span>
+              <span class="client-metric__value client-metric__value--bad">37,8%</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Ingreso / estancia</span>
+              <span class="client-metric__value">361&nbsp;€</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Noches / visita</span>
+              <span class="client-metric__value">3,5</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Visitas previas (media)</span>
+              <span class="client-metric__value">0</span>
+            </div>
+            <div class="client-metric">
+              <span class="client-metric__label">Coste captación</span>
+              <span class="client-metric__value client-metric__value--bad">~54&nbsp;€</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /client-grid -->
+
+      <div class="insight-box reveal">
+        <p class="insight-box__label">Insight clave</p>
+        <p class="insight-box__text">
+          El cliente nuevo parece más valioso por visita (361&nbsp;€ vs 177&nbsp;€),
+          pero al <strong>restar la comisión (~54&nbsp;€)</strong> y multiplicar por
+          las <strong>4 visitas recurrentes del cliente fiel</strong>, la ecuación
+          se invierte: 708&nbsp;€ sin coste frente a 307&nbsp;€ neto en una sola visita.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────
+       ACTO 4 — 1 de cada 5 huéspedes: upgrade
+  ─────────────────────────────────────────────────────────────────────────────── -->
+  <section id="act4" class="section section--act" aria-label="Acto 4: Cambios de habitación al check-in">
+    <div class="act-header">
+      <p class="act-number reveal">ACTO 4 DE 4</p>
+      <h2 class="act-title reveal reveal-delay-1">
+        1 de cada 5 huéspedes llega<br />y le cambian la habitación
+      </h2>
+      <div class="section-divider reveal reveal-delay-2"></div>
+      <p class="act-message reveal reveal-delay-3">
+        Y casi siempre es para mejor: una táctica de fidelización
+        espontánea que los datos confirman.
+      </p>
+    </div>
+
+    <div class="act-content">
+      <div class="act4-layout">
+
+        <!-- Stat grande -->
+        <div class="big-stat-block reveal">
+          <div class="big-stat-num">
+            <span class="counter" data-target="18.8" data-decimals="1" data-suffix="%">0%</span>
+          </div>
+          <p class="big-stat-label">
+            de huéspedes recibe una habitación diferente al hacer check-in
+          </p>
+          <p class="big-stat-sub">14.115 personas de 119.390 reservas</p>
+        </div>
+
+        <!-- Donut SVG -->
+        <div class="donut-wrap reveal reveal-delay-2">
+          <svg
+            id="donut-svg"
+            class="donut-svg"
+            viewBox="0 0 220 220"
+            aria-label="Gráfico circular: 95,6% upgrades, 4,4% downgrades"
+            role="img"
+          >
+            <!-- Generado por charts.js -->
+          </svg>
+
+          <div class="donut-legend">
+            <div class="donut-legend-item">
+              <div class="legend-dot" style="background:var(--green-mid)"></div>
+              <span>Upgrades 95,6%</span>
+            </div>
+            <div class="donut-legend-item">
+              <div class="legend-dot" style="background:var(--orange)"></div>
+              <span>Downgrades 4,4%</span>
+            </div>
+          </div>
+
+          <div class="chart-wrap" style="text-align:center;padding:20px 28px;margin:0">
+            <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:6px">
+              De los 14.115 cambios de habitación:
+            </p>
+            <p style="font-family:var(--font-serif);font-size:1rem;color:var(--green-mid);margin-bottom:4px">
+              <strong>13.494</strong> son upgrades
+            </p>
+            <p style="font-family:var(--font-serif);font-size:1rem;color:var(--orange)">
+              <strong>621</strong> son downgrades
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /act4-layout -->
+
+      <div class="insight-box reveal">
+        <p class="insight-box__label">Insight clave</p>
+        <p class="insight-box__text">
+          El <strong>upgrade sorpresa</strong> es la herramienta de fidelización
+          más barata del hotel: no tiene coste directo (la habitación superior
+          estaba vacía de todas formas) y genera una experiencia positiva memorable.
+          Con un 95,6% de upgrades sobre el total de cambios, está claro que
+          el patrón es <strong>sistemático, no accidental</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────────────
+       CONCLUSIÓN
+  ─────────────────────────────────────────────────────────────────────────────── -->
+  <section id="conclusion" class="section section--conclusion" aria-label="Conclusión: el huésped perfecto">
+
+    <div class="conclusion-intro">
+      <p class="act-number reveal">CONCLUSIÓN</p>
+      <h2 class="conclusion-title reveal reveal-delay-1">
+        El huésped perfecto existe,<br />y los datos lo señalan
+      </h2>
+      <div class="section-divider reveal reveal-delay-2"></div>
+      <p class="conclusion-lead reveal reveal-delay-3">
+        Tras analizar 119.390 reservas, emergen tres perfiles con un
+        potencial de ingreso superior —sin incrementar la capacidad ni
+        el coste operativo del hotel.
+      </p>
+    </div>
+
+    <!-- 3 perfiles -->
+    <div class="profiles-grid">
+
+      <div class="profile-card reveal reveal-delay-1">
+        <p class="profile-card__num">PERFIL 01</p>
+        <span class="profile-card__icon">👨‍👩‍👧</span>
+        <h3 class="profile-card__title">La Familia</h3>
+        <div class="profile-card__value">
+          <span class="counter" data-target="561" data-suffix="€">0€</span>
+        </div>
+        <p class="profile-card__metric">por estancia</p>
+        <p class="profile-card__subtext">
+          Misma habitación que cualquier cliente. ADR 151€/noche,
+          3,7 noches, 1,12 peticiones especiales. El hotel cobra
+          más sin añadir recursos.
+        </p>
+      </div>
+
+      <div class="profile-card reveal reveal-delay-2">
+        <p class="profile-card__num">PERFIL 02</p>
+        <span class="profile-card__icon">💻</span>
+        <h3 class="profile-card__title">Reserva Directa</h3>
+        <div class="profile-card__value">
+          <span class="counter" data-target="391" data-suffix="€">0€</span>
+        </div>
+        <p class="profile-card__metric">ingresos confirmados</p>
+        <p class="profile-card__subtext">
+          Sin comisión, tasa de confirmación 84,7%.
+          Por cada 100 reservas directas, 85 generan ingreso.
+          Por cada 100 de Booking, solo 63.
+        </p>
+      </div>
+
+      <div class="profile-card reveal reveal-delay-3">
+        <p class="profile-card__num">PERFIL 03</p>
+        <span class="profile-card__icon">★</span>
+        <h3 class="profile-card__title">Cliente Fiel</h3>
+        <div class="profile-card__value">
+          <span class="counter" data-target="708" data-suffix="€">0€</span>
+        </div>
+        <p class="profile-card__metric">valor de vida</p>
+        <p class="profile-card__subtext">
+          0€ de coste de captación. Cancela solo el 14,5% de las veces.
+          Vuelve 4 veces de media. El upgrade sorpresa acelera este ciclo.
+        </p>
+      </div>
+
+    </div><!-- /profiles-grid -->
+
+    <!-- Cita final -->
+    <div class="final-quote reveal">
+      <p class="final-quote__text">
+        "El sector persigue el volumen de las OTAs.
+        Los datos dicen que hay <em>una estrategia mejor</em>."
+      </p>
+      <p class="final-quote__source">
+        Hotel Bookings Dataset · Portugal 2015–2017 · 119.390 reservas
+      </p>
+    </div>
+
+    <!-- CAMBIO 4 — Tooltips reflexiones + uso de IA -->
+    <div class="tooltip-group reveal">
+
+      <!-- Botón A: Reflexiones finales -->
+      <div class="tooltip-btn-wrap">
+        <button class="tooltip-btn" type="button">
+          <em class="tooltip-btn__icon">💭</em>
+          <span>Reflexiones finales</span>
+        </button>
+        <div class="tooltip-content" role="tooltip">
+          Esta visualización demuestra que los datos del sector hotelero
+          contienen más información de la que habitualmente se analiza.
+          La narrativa scrollytelling permite guiar al lector de forma
+          progresiva, generando tensión antes de revelar cada insight.
+          La principal limitación del dataset es que no incluye el coste
+          real de las comisiones ni datos de satisfacción del cliente — con
+          esa información la historia sería aún más precisa. El uso del
+          color de forma semántica (verde = rentable/fiel, rojo = riesgo/coste)
+          y la animación progresiva buscan que cada dato impacte en el momento
+          correcto.
+        </div>
+      </div>
+
+      <!-- Botón B: Uso de IA -->
+      <div class="tooltip-btn-wrap">
+        <button class="tooltip-btn" type="button">
+          <em class="tooltip-btn__icon">🤖</em>
+          <span>Uso de IA</span>
+        </button>
+        <div class="tooltip-content" role="tooltip">
+          Esta práctica utilizó Claude (Anthropic) como herramienta de
+          apoyo en dos fases: (1) Generación del código — el HTML, CSS y JS
+          fueron generados a partir de prompts detallados que especificaban
+          la estructura narrativa, los datos exactos de cada acto y los
+          requisitos técnicos de animación e interactividad. (2) Verificación
+          — una vez generado el código, se comprobó que todos los datos
+          mostrados concordaban con el dataset original (hotel_bookings.csv)
+          y los análisis propios. Todo el proceso fue supervisado
+          detalladamente, revisando y ajustando el output en cada paso.
+        </div>
+      </div>
+
+    </div><!-- /tooltip-group -->
+
+  </section>
+
+  <!-- Scripts (type="module" para usar imports) -->
+  <script type="module" src="charts.js"></script>
+  <script type="module" src="nav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Ignorar documentos y enunciados
+*.pdf
+*.mp4
+
+# Ignorar archivos de análisis de R
+*.Rmd
+
+# ignorar el CSV si ya tienes los datos en data.js
+hotel_bookings.csv
